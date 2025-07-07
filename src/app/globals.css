@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ライトモード */
+    --color-forest-primary: #8B4513; /* サドルブラウン */
+    --color-forest-secondary: #228B22; /* フォレストグリーン */
+    --color-mushroom-red: #DC143C; /* クリムゾン */
+    --color-mushroom-yellow: #FFD700; /* ゴールド */
+    --color-earth: #DEB887; /* バーリーウッド */
+    --color-leaf: #9ACD32; /* イエローグリーン */
+    --color-background: #F5F5DC; /* ベージュ */
+    --color-text: #2F4F4F; /* ダークスレートグレー */
+    
+    --background: #F5F5DC;
+    --foreground: #2F4F4F;
+  }
+
+  .dark {
+    /* ダークモード - 夜の森 */
+    --color-forest-primary: #4A4A4A; /* ダークグレー */
+    --color-forest-secondary: #1B3B36; /* ダークティール */
+    --color-mushroom-red: #FF6B6B; /* 光る赤 */
+    --color-mushroom-yellow: #FFD93D; /* 光る黄 */
+    --color-earth: #3C3C3C; /* ダークグレー */
+    --color-leaf: #48C774; /* 光るグリーン */
+    --color-background: #1A1A1A; /* ほぼ黒 */
+    --color-text: #E8E8E8; /* ライトグレー */
+    
+    --background: #1A1A1A;
+    --foreground: #E8E8E8;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* きのこアニメーション用のクラス */
+.mushroom {
+  transition: transform 0.3s ease;
+}
+
+.mushroom:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.mushroom-jumping {
+  animation: jump 0.5s ease-in-out;
+}
+
+.mushroom-comparing {
+  animation: nod 0.8s ease-in-out;
+}
+
+@keyframes jump {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.1); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes nod {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* 光るエフェクト（ダークモード用） */
+[data-theme="dark"] .glow {
+  box-shadow: 0 0 10px var(--color-mushroom-red), 0 0 20px var(--color-mushroom-red);
+}
+
+/* ボタンスタイル（切り株風） */
+.btn-stump {
+  background: linear-gradient(135deg, var(--color-forest-primary), var(--color-earth));
+  border: 2px solid var(--color-forest-secondary);
+  border-radius: 20px;
+  color: var(--color-background);
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-stump:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* スライダーのスタイル */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #f59e0b;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #f59e0b;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input[type="range"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
