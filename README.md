@@ -14,10 +14,24 @@
 
 ## 🛠️ 技術スタック
 
-- **Next.js 14** (App Router)
+- **Next.js 15** (App Router)
 - **TypeScript**
 - **Tailwind CSS**
 - **Framer Motion** (アニメーション)
+- **Vercel** (デプロイ)
+
+## 🚀 デプロイ
+
+このプロジェクトはVercelでホストされています。
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/sortshroom)
+
+### 自分でデプロイする場合
+
+1. プロジェクトをクローン
+2. Vercelにサインアップ
+3. GitHubリポジトリを接続
+4. 自動デプロイが開始されます
 - **Lucide React** (アイコン)
 
 ## 🚀 開発環境の構築

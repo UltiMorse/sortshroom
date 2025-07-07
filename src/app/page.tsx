@@ -40,6 +40,7 @@ export default function Home() {
     
     // Web Audio APIの初期化
     if (typeof window !== 'undefined') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
     }
     
@@ -528,19 +529,14 @@ export default function Home() {
     setHighlightedIndices([]);
   }, []);
 
-  // データサイズが変更されたときの処理を修正（依存配列を固定）
+  // データサイズが変更されたときの処理
   useEffect(() => {
-    // ソート中でなく、かつ現在のデータサイズと異なる場合のみ更新
-    if (!isPlaying && mushroomData.length !== dataSize) {
+    // ソート中でなければデータを再生成
+    if (!isPlaying) {
       setMushroomData(generateRandomData(dataSize));
       resetAnimation();
     }
-  }, [dataSize, generateRandomData, resetAnimation, isPlaying]); // mushroomData.lengthを依存配列から削除
-
-  // 初期データ生成（マウント時のみ）
-  useEffect(() => {
-    setMushroomData(generateRandomData(dataSize));
-  }, []); // 空の依存配列で初回のみ実行
+  }, [dataSize, generateRandomData, resetAnimation, isPlaying]);
 
   // リセット（手動実行のみ）
   const handleReset = () => {
