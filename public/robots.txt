@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# サイトマップの場所
+Sitemap: https://sortshroom.vercel.app/sitemap.xml
+
+# 主要なページ
+Allow: /
+Allow: /favicon.ico
+
+# 除外するファイル
+Disallow: /_next/
+Disallow: /api/
+
+# クロール頻度の推奨
+Crawl-delay: 1

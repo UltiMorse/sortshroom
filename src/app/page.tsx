@@ -1,8 +1,20 @@
 'use client';
 
+import { Metadata } from 'next';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Moon, Sun, Play, RotateCcw, Settings, X, Volume2, VolumeX, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+export const metadata: Metadata = {
+  title: "SortShroom - きのこで学ぶソートアルゴリズム図鑑",
+  description: "きのこをモチーフにしたアニメーションで、バブルソート、選択ソート、挿入ソート、マージソート、クイックソート、ヒープソートなどのソートアルゴリズムを直感的に学習できる教育サイトです。",
+  keywords: ["ソートアルゴリズム", "アルゴリズム可視化", "プログラミング学習", "教育", "きのこ", "データ構造", "コンピューターサイエンス"],
+  openGraph: {
+    title: "SortShroom - きのこで学ぶソートアルゴリズム図鑑",
+    description: "きのこをモチーフにしたアニメーションでソートアルゴリズムを直感的に学習",
+    images: ['/opengraph-image'],
+  },
+};
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -573,6 +585,35 @@ export default function Home() {
 
   return (
     <div className="min-h-screen transition-colors duration-300 bg-[var(--background)] text-[var(--foreground)]">
+      {/* 構造化データ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "SortShroom - きのこで学ぶソートアルゴリズム図鑑",
+            "description": "きのこをモチーフにしたアニメーションでソートアルゴリズムを直感的に学習できる教育サイト",
+            "url": "https://sortshroom.vercel.app",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "JPY"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "SortShroom"
+            },
+            "educationalUse": "プログラミング学習",
+            "learningResourceType": "Interactive Resource",
+            "teaches": ["ソートアルゴリズム", "プログラミング", "データ構造"],
+            "inLanguage": "ja"
+          })
+        }}
+      />
+      
       {/* ヘッダー */}
       <header className="bg-gradient-to-r from-yellow-100 to-green-100 dark:from-gray-800 dark:to-gray-900 p-4 shadow-lg">
         <div className="container mx-auto flex justify-between items-center">

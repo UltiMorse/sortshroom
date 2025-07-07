@@ -1,13 +1,25 @@
 # 🍄 SortShroom - きのこで学ぶソートアルゴリズム図鑑
 
-きのこをモチーフにしたアニメーションを通して、各種ソートアルゴリズムを学習。
+[![Vercel](https://img.shields.io/badge/vercel-deployed-brightgreen)](https://sortshroom.vercel.app)
+[![Next.js](https://img.shields.io/badge/Next.js-15-blue)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38B2AC)](https://tailwindcss.com/)
+
+きのこをモチーフにしたアニメーションを通して、各種ソートアルゴリズムの動作原理を直感的に理解できる教育ウェブサイトです。
+
+🔗 **ライブデモ**: [https://sortshroom.vercel.app](https://sortshroom.vercel.app)
 
 ## ✨ 特徴
 
+- 🍄 **かわいいきのこのアニメーション** - きのこが跳んだり並び替わったりする様子でアルゴリズムを可視化
+- 📊 **6種類のソートアルゴリズム** - バブル、選択、挿入、マージ、クイック、ヒープソート  
+- 🎵 **サウンド効果** - 比較や交換時の音で動作をより理解しやすく
+- 📱 **レスポンシブ対応** - PC、タブレット、スマートフォンで快適に利用可能
+- 🌙 **ダークモード対応** - 目に優しいテーマ切り替え機能
+- ⚡ **パフォーマンス計測** - 比較回数・交換回数のリアルタイム表示
+- 🎮 **インタラクティブ設定** - データサイズ、アニメーション速度の調整
 - **直感的なビジュアライゼーション**: きのこのアニメーションでソート過程を表現
-- **6つのソートアルゴリズム**: バブル、選択、挿入、マージ、クイック、ヒープソート
 - **教育的解説**: アルゴリズムの特性、計算量、コード例
-- **ダークモード**: 夜の森テーマで幻想的な雰囲気
 
 ## 🛠️ 技術スタック
 
