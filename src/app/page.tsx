@@ -18,6 +18,7 @@ export default function Home() {
     { id: 7, value: 10, color: 'yellow' },
   ]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isSortCompleted, setIsSortCompleted] = useState(false);
   const [comparisons, setComparisons] = useState(0);
   const [swaps, setSwaps] = useState(0);
   const [highlightedIndices, setHighlightedIndices] = useState<number[]>([]);
@@ -158,6 +159,7 @@ export default function Home() {
     // ソート完了 - ハイライトを解除してソート状態を維持
     setHighlightedIndices([]);
     setIsPlaying(false);
+    setIsSortCompleted(true);
     playSound('complete');
   };
 
@@ -206,6 +208,7 @@ export default function Home() {
     // ソート完了 - ハイライトを解除してソート状態を維持
     setHighlightedIndices([]);
     setIsPlaying(false);
+    setIsSortCompleted(true);
     playSound('complete');
   };
 
@@ -259,6 +262,7 @@ export default function Home() {
     // ソート完了 - ハイライトを解除してソート状態を維持
     setHighlightedIndices([]);
     setIsPlaying(false);
+    setIsSortCompleted(true);
     playSound('complete');
   };
 
@@ -334,6 +338,7 @@ export default function Home() {
     // ソート完了 - ハイライトを解除してソート状態を維持
     setHighlightedIndices([]);
     setIsPlaying(false);
+    setIsSortCompleted(true);
     playSound('complete');
   };
 
@@ -403,6 +408,7 @@ export default function Home() {
     // ソート完了 - ハイライトを解除してソート状態を維持
     setHighlightedIndices([]);
     setIsPlaying(false);
+    setIsSortCompleted(true);
     playSound('complete');
   };
 
@@ -485,6 +491,7 @@ export default function Home() {
     // ソート完了 - ハイライトを解除してソート状態を維持
     setHighlightedIndices([]);
     setIsPlaying(false);
+    setIsSortCompleted(true);
     playSound('complete');
   };
 
@@ -493,6 +500,7 @@ export default function Home() {
     if (isPlaying) return;
     
     setIsPlaying(true);
+    setIsSortCompleted(false);
     setComparisons(0);
     setSwaps(0);
     
@@ -524,17 +532,26 @@ export default function Home() {
   // リセット機能（useCallbackで最適化）
   const resetAnimation = useCallback(() => {
     setIsPlaying(false);
+    setIsSortCompleted(false);
     setComparisons(0);
     setSwaps(0);
     setHighlightedIndices([]);
   }, []);
 
-  // データサイズが変更されたときの処理
+  // データサイズが変更されたときの処理（ソート完了後は自動リセットしない）
   useEffect(() => {
-    // ソート中でなければデータを再生成
+    // ソート中でなく、かつソート前の状態でのみデータを再生成
     if (!isPlaying) {
-      setMushroomData(generateRandomData(dataSize));
-      resetAnimation();
+      // 現在のデータがソート済みかどうかをチェック
+      const isSorted = mushroomData.every((mushroom, index) => 
+        index === 0 || mushroom.value >= mushroomData[index - 1].value
+      );
+      
+      // ソート済みでない場合のみ新しいデータを生成
+      if (!isSorted || mushroomData.length !== dataSize) {
+        setMushroomData(generateRandomData(dataSize));
+        resetAnimation();
+      }
     }
   }, [dataSize, generateRandomData, resetAnimation, isPlaying]);
 
@@ -673,6 +690,22 @@ export default function Home() {
 
             {/* 操作パネル */}
             <div className="flex flex-wrap justify-center gap-4">
+              {/* ソート完了メッセージ */}
+              {isSortCompleted && (
+                <motion.div
+                  className="w-full text-center mb-4"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-lg shadow-lg inline-flex items-center gap-2">
+                    <span className="text-xl">🎉</span>
+                    <span className="font-bold">ソート完了！データは整列されました</span>
+                    <span className="text-xl">🍄</span>
+                  </div>
+                </motion.div>
+              )}
+
               <motion.button
                 onClick={startSort}
                 disabled={isPlaying}
