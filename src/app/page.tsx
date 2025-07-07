@@ -1,20 +1,8 @@
 'use client';
 
-import { Metadata } from 'next';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Moon, Sun, Play, RotateCcw, Settings, X, Volume2, VolumeX, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
-
-export const metadata: Metadata = {
-  title: "SortShroom - きのこで学ぶソートアルゴリズム図鑑",
-  description: "きのこをモチーフにしたアニメーションで、バブルソート、選択ソート、挿入ソート、マージソート、クイックソート、ヒープソートなどのソートアルゴリズムを直感的に学習できる教育サイトです。",
-  keywords: ["ソートアルゴリズム", "アルゴリズム可視化", "プログラミング学習", "教育", "きのこ", "データ構造", "コンピューターサイエンス"],
-  openGraph: {
-    title: "SortShroom - きのこで学ぶソートアルゴリズム図鑑",
-    description: "きのこをモチーフにしたアニメーションでソートアルゴリズムを直感的に学習",
-    images: ['/opengraph-image'],
-  },
-};
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
