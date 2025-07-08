@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "SortShroom - きのこで学ぶソートアルゴリズム図鑑",
   description: "きのこをモチーフにしたアニメーションで、バブルソート、選択ソート、挿入ソート、マージソート、クイックソート、ヒープソートなどのソートアルゴリズムを直感的に学習できる教育サイトです。",
   keywords: ["ソートアルゴリズム", "アルゴリズム可視化", "プログラミング学習", "教育", "きのこ", "データ構造", "コンピューターサイエンス"],
+  authors: [{ name: "UltiMorse", url: "https://ultimorse.github.io/" }],
   openGraph: {
     title: "SortShroom - きのこで学ぶソートアルゴリズム図鑑",
     description: "きのこをモチーフにしたアニメーションでソートアルゴリズムを直感的に学習",
@@ -49,7 +50,7 @@ export default function RootLayout({
   const structuredData = generateStructuredData();
 
   return (
-    <html lang="ja">
+    <html lang="ja" className="dark">
       <head>
         <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
         <script

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import ShareButton from '@/components/ShareButton';
 
 export default function Home() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(0);
   const [mushroomData, setMushroomData] = useState([
     { id: 0, value: 60, color: 'red' },
@@ -36,9 +36,9 @@ export default function Home() {
 
   // テーマ初期化 - 初回のみ実行
   useEffect(() => {
-    // デフォルトはライトモードに設定
-    setIsDarkMode(false);
-    document.documentElement.classList.remove('dark');
+    // デフォルトはダークモードに設定
+    setIsDarkMode(true);
+    document.documentElement.classList.add('dark');
     
     // Web Audio APIの初期化
     if (typeof window !== 'undefined') {
@@ -592,8 +592,9 @@ export default function Home() {
               "priceCurrency": "JPY"
             },
             "author": {
-              "@type": "Organization",
-              "name": "SortShroom"
+              "@type": "Person",
+              "name": "UltiMorse",
+              "url": "https://ultimorse.github.io/"
             },
             "educationalUse": "プログラミング学習",
             "learningResourceType": "Interactive Resource",
@@ -1330,6 +1331,24 @@ print("整理後のきのこの山:", forest_mushrooms)`;
           </motion.div>
         </div>
       )}
+
+      {/* フッター */}
+      <footer className="mt-12 py-6 border-t border-gray-200 dark:border-gray-700">
+        <div className="text-center text-sm text-gray-600 dark:text-gray-400">
+          <p>
+            Developed by{' '}
+            <a
+              href="https://ultimorse.github.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors font-medium"
+            >
+              UltiMorse
+            </a>
+          </p>
+          <p className="mt-1">© 2024 SortShroom. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 }
