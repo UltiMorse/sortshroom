@@ -27,7 +27,6 @@ export default function Home() {
   const [animationSpeed, setAnimationSpeed] = useState(7); // デフォルト速度を5から7に変更
   const [activeTab, setActiveTab] = useState('explanation');
   const [showSettings, setShowSettings] = useState(false);
-  const [autoPlay, setAutoPlay] = useState(false);
   const [showSteps, setShowSteps] = useState(true);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -1241,29 +1240,6 @@ print("整理後のきのこの山:", forest_mushrooms)`;
                   <span>遅い</span>
                   <span>速い</span>
                 </div>
-              </div>
-
-              {/* オートプレイ設定 */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Play className="w-5 h-5 text-green-600" />
-                  <div>
-                    <div className="font-medium text-gray-700 dark:text-gray-300">オートプレイ</div>
-                    <div className="text-sm text-gray-500">ソート完了後、次のアルゴリズムを自動実行</div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setAutoPlay(!autoPlay)}
-                  className={`w-12 h-6 rounded-full transition-colors ${
-                    autoPlay ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'
-                  }`}
-                >
-                  <div
-                    className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform ${
-                      autoPlay ? 'translate-x-6' : 'translate-x-0.5'
-                    }`}
-                  />
-                </button>
               </div>
 
               {/* ステップ表示設定 */}
