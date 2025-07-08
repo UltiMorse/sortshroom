@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Moon, Sun, Play, RotateCcw, Settings, X, Volume2, VolumeX, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
+import ShareButton from '@/components/ShareButton';
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -614,16 +615,20 @@ export default function Home() {
             🍄 SortShroom - きのこソート
           </motion.h1>
           
-          <button
-            onClick={toggleTheme}
-            className="p-3 rounded-full bg-white dark:bg-gray-700 shadow-lg hover:scale-105 transition-all border-2 border-gray-300 dark:border-gray-500 hover:shadow-xl"
-            aria-label="テーマ切り替え"
-          >
-            {isDarkMode ? 
-              <Sun className="w-6 h-6 text-yellow-500" /> : 
-              <Moon className="w-6 h-6 text-gray-600" />
-            }
-          </button>
+          <div className="flex items-center gap-3">
+            <ShareButton isDarkMode={isDarkMode} />
+            
+            <button
+              onClick={toggleTheme}
+              className="p-3 rounded-full bg-white dark:bg-gray-700 shadow-lg hover:scale-105 transition-all border-2 border-gray-300 dark:border-gray-500 hover:shadow-xl"
+              aria-label="テーマ切り替え"
+            >
+              {isDarkMode ? 
+                <Sun className="w-6 h-6 text-yellow-500" /> : 
+                <Moon className="w-6 h-6 text-gray-600" />
+              }
+            </button>
+          </div>
         </div>
       </header>
 
@@ -782,6 +787,17 @@ export default function Home() {
                 <Settings className="w-5 h-5" />
                 設定
               </motion.button>
+
+              {/* シェアボタン */}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ShareButton 
+                  algorithmName={algorithms[selectedAlgorithm]} 
+                  isDarkMode={isDarkMode} 
+                />
+              </motion.div>
             </div>
           </div>
         </section>
