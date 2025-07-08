@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Share2, Twitter, Facebook, Link2, Check } from 'lucide-react';
 
 interface ShareButtonProps {
@@ -11,6 +11,24 @@ interface ShareButtonProps {
 export default function ShareButton({ algorithmName, isDarkMode }: ShareButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // メニュー外クリックでメニューを閉じる
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
   const baseUrl = 'https://sortshroom.vercel.app';
   const shareText = algorithmName 
@@ -46,7 +64,7 @@ export default function ShareButton({ algorithmName, isDarkMode }: ShareButtonPr
   };
 
   return (
-    <div className="relative">
+    <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`p-2 rounded-lg transition-all duration-200 ${
@@ -60,19 +78,11 @@ export default function ShareButton({ algorithmName, isDarkMode }: ShareButtonPr
       </button>
 
       {isOpen && (
-        <>
-          {/* オーバーレイ */}
-          <div 
-            className="fixed inset-0 z-40"
-            onClick={() => setIsOpen(false)}
-          />
-          
-          {/* シェアメニュー */}
-          <div className={`absolute right-0 top-full mt-2 w-56 rounded-lg shadow-lg border z-50 ${
-            isDarkMode 
-              ? 'bg-slate-800 border-slate-700' 
-              : 'bg-white border-emerald-200'
-          }`}>
+        <div className={`absolute right-0 top-full mt-2 w-56 rounded-lg shadow-lg border z-[1000] ${
+          isDarkMode 
+            ? 'bg-slate-800 border-slate-700' 
+            : 'bg-white border-emerald-200'
+        }`}>
             <div className="p-3">
               <h3 className={`text-sm font-medium mb-3 ${
                 isDarkMode ? 'text-gray-200' : 'text-gray-800'
@@ -151,7 +161,6 @@ export default function ShareButton({ algorithmName, isDarkMode }: ShareButtonPr
               </div>
             </div>
           </div>
-        </>
       )}
     </div>
   );
