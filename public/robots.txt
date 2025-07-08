@@ -12,5 +12,15 @@ Allow: /favicon.ico
 Disallow: /_next/
 Disallow: /api/
 
+# 検索エンジン別の最適化
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
 # クロール頻度の推奨
 Crawl-delay: 1
